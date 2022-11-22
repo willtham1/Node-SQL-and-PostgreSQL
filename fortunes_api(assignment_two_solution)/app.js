@@ -7,6 +7,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
+//This is the module to get all the fortunes
 app.get('/fortunes', (req, res) => {
   res.json(fortunes);
 });
@@ -23,6 +24,7 @@ const writeFortunes = json => {
   fs.writeFile('./data/fortunes.json', JSON.stringify(json), err => console.log(err));
 };
 
+//This is the module to add new fortunes to our data
 app.post('/fortunes', (req, res) => {
   const { message, lucky_number, spirit_animal } = req.body;
 
@@ -40,6 +42,7 @@ app.post('/fortunes', (req, res) => {
   res.json(new_fortunes);
 });
 
+//This is the module to update fortunes in our data
 app.put('/fortunes/:id', (req, res) => {
   const { id } = req.params;
 
@@ -54,6 +57,7 @@ app.put('/fortunes/:id', (req, res) => {
   res.json(fortunes);
 });
 
+//This is the module to delete fortunes in our data
 app.delete('/fortunes/:id', (req, res) => {
   const { id } = req.params;
 
